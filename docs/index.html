@@ -87,18 +87,46 @@
               </section>
             </section>
             <section>
+            <section>
               ¿Qué son las bases de datos NoSQL?
-              Bases de datos que no requieren estructuras fijas en los registros de datos, no soportan operaciones JOIN, ni garantizan ACID.
+              Bases de datos que no requieren estructuras fijas en los registros de datos y en vez de usas esquemas entidad-relación, usan varios tipos de modelos distintos: clave-valor, orientada a documentos o en grafo.
+              No soportan operaciones JOIN, ni garantizan ACID.
               Pero que escalan horizontalmente con facilidad y cuyas operaciones se realizan "rápidamente".
             </section>
             <section>
               ¿Por qué aparecen las bases de datos NoSQL?
               Por el crecimiento exponencial de la información que circula en Internet.
-              Recordad: atomicidad y "bajo" rendimiento, además de consultas cada vez más complejas.
+              (Recordad: atomicidad y "bajo" rendimiento, además de consultas cada vez más complejas)
               Añadir más nodos es simple.
               Consultas tipo Map-Reduce y sharding.
               Trabajo en memoria.
             </section>
+            <section>
+              Tipos de bases de datos NoSQL
+              Por clave valor: cada elemento es identificado por una clave única y la información se almacena generalmente en un objeto binario.
+              Ej: Cassandra, HBase, Redis.
+              Usado Facebook, Twitter, Yahoo o StackOverflow.
+            </section>
+            <section>
+              Tipos de bases de datos NoSQL
+              Orientada a documentos: almacenan la información en estructuras simples estandarizadas como JSON, XML o BSON sobre las que se pueden realizar búsquedas por clave-valor o realizar consultas más avanzadas.
+              Ej: MongoDB, CouchDB.
+              Usado en Foursquare, eBay y BBC.
+            </section>
+            <section>
+              Tipos de bases de datos NoSQL
+              En grafo: mediante la teoría de grafos usa nodos y aristaspara representar la información. Muy útil para representar modelos con muchas relaciones como las redes sociales.
+              Ej: Infinity Graph o Neo4j.
+              Usado en HP, Infojobs o Cisco.
+            </section>
+            <section>
+              En resumen, cuando usar NoSQL:
+              Cuando el volumen de datos crece muy rápidamente en momentos puntuales pudiendo superar el terabyte.
+              Cuando la escalabilidad no es viable en el modelo relacional por motivos de coste o técnicos.
+              Cuando existen picos de uso del sistema en múltiples ocasiones.
+              Cuando el esquema de la información no es homogéneo.
+            </section>
+          </section>
         </div>
     </div>
 
