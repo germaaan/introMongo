@@ -195,7 +195,7 @@
                 <section>
                     <h3>¿Qué es MongoDB?</h3>
                     <ul class="fragment">
-                        <li>MongoDB es un sistema de base de datos multiplataforma orientado a documentos de esquema libre.</li>
+                        <li>MongoDB (de la palabra en inglés “humongous” que significa enorme) es un sistema de base de datos NoSQL multiplataforma orientado a documentos de esquema libre.</li>
                         <li class="fragment">Está escrita en C++.</li>
                         <li class="fragment">Los registros de datos reciben el nombre de <strong>documentos</strong> y se puede agrupar en <strong>colecciones</strong>.</li>
                         <li class="fragment">Licencia libre GNU AGPL 3.0.</li>
@@ -203,13 +203,19 @@
                 </section>
                 <section>
                     <h3>Características de MongoDB</h3>
-                    <ul class="fragment">
-                        <li>Reconoce sin problemas muchos de tipos de datos: string, integer, double, boolean, date, timestamp, null, array, objects...</li>
-                        <li class="fragment">El uso de colecciones y que un documento pueda contener otro documento suple la no existencia de JOIN (-complejidad +rapidez)</li>
-                        <li class="fragment">Búsquedas por campos, rangos o expresiones regulares usando el shell de MongoDB o directamente mediante programas en JavaScript</li>
-                        <li class="fragment">Escalado horizontal mediante "sharding". Se puede elegir como se distribuyen.</li>
-                        <li class="fragment">Ejecución simple en varios servicos, balanceo automático de carga y replicación automática en caso de fallo hardware.</li>
-                    </ul>
+                    <font size=5>
+                        <ul class="fragment">
+                            <li>Reconoce sin problemas muchos de tipos de datos: string, integer, double, boolean, date, timestamp, null, array, objects...</li>
+                            <br>
+                            <li class="fragment">El uso de colecciones y que un documento pueda contener otro documento suple la no existencia de JOIN (-complejidad +rapidez)</li>
+                            <br>
+                            <li class="fragment">Búsquedas por campos, rangos o expresiones regulares usando el shell de MongoDB o directamente mediante programas en JavaScript</li>
+                            <br>
+                            <li class="fragment">Escalado horizontal mediante "sharding". Se puede elegir como se distribuyen.</li>
+                            <br>
+                            <li class="fragment">Ejecución simple en varios servidores, balanceo automático de carga y replicación automática en caso de fallo hardware.</li>
+                        </ul>
+                    </font>
                 </section>
                 <section>
                     <h3>Esquema comparativo de organización</h3>
@@ -247,34 +253,149 @@
                     <pre>
                     <code class="prettyprint">{
   "_id": ObjectId("4efa9f2b7d343dad555e4bc7"),
-  "Nombre": "German",
-  "Apellidos": "Martinez Maldonado",
-  "Edad": 28,
-  "Favoritas": ["Ciencia Ficcion","Drama","Comedias"],
-  "Series": [
+  "nombre": "German",
+  "apellidos": "Martinez Maldonado",
+  "edad": 28,
+  "genero_favorito": "Drama",
+  "series": [
     {
-      "Nombre":"Breaking Bad",
-      "Genero":"Drama",
-      "Nota":10,
-      "Comentario":"La mejor serie de la historia"
+      "nombre":"Breaking Bad",
+      "genero":"Drama",
+      "nota":10,
+      "comentario":"La mejor serie de la historia"
     },
     {
-      "Nombre":"Doctor Who",
-      "Genero":"Ciencia Ficcion",
-      "Nota":9,
-      "Comentario":"Ojala yo teniendo una TARDIS ahora"
+      "nombre":"Doctor Who",
+      "genero":"Ciencia Ficcion",
+      "nota":9,
+      "comentario":"Ojala yo teniendo una TARDIS ahora"
     },
     {
-      "Nombre":"LOST",
-      "Genero":"Ciencia Ficcion",
-      "Nota":4,
-      "Comentario":"El final más meh de la historia"
-    },
+      "nombre":"LOST",
+      "genero":"Ciencia Ficcion",
+      "nota":4,
+      "comentario":"El final más meh de la historia"
+    }
   ]
 }
 </code>
 </pre>
                 </section>
+                <section>
+                    <h3>MongoDB Shell</h3>
+                    <div class="fragment">
+                        <p>Es un interfaz JavaScript interactivo que nos permite conectarnos a MongoDB.
+                            <ul>
+                                <li>db.[COLLECTION].help()</li>
+                                <li>show [dbs|collections|users]</li>
+                                <li>use DATABASE</li>
+                                <li>db.createCollection("usuarios")</li>
+                            </ul>
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <h3>Operaciones CRUD</h3>
+                    <p>CREATE (insert): </p>
+                    <font size=5>
+                        <p><i><strong>SQL</strong>: INSERT INTO usuarios VALUES ("Tipo", "De Incognito"...)</i>
+                    </font>
+                    <pre>
+                      <code class="prettyprint">> db.usuarios.insert(
+  {
+    "nombre": "Tipo",
+    "apellidos": "De Incognito",
+    "edad": 43,
+    "genero_favorito": "Humor",
+    "series": [
+      {
+        "nombre":"Los Simpsons",
+        "genero":"Humor",
+        "nota":7,
+        "comentario":"A partir de la temporada 11 dejaron de tener gracia."
+      }
+    ]
+  }
+)
+  </code>
+  </pre>
+                </section>
+                <section>
+                    <h3>Operaciones CRUD</h3>
+                    <p>READ (find / findOne): </p>
+                    <font size=5>
+                        <p><i><strong>SQL</strong>:<br>SELECT nombre, edad, favoritos FROM usuarios WHERE edad > 20 LIMIT 5 ORDER BY edad ASC</i>
+                    </font>
+                    <pre>
+                      <code class="prettyprint">> db.usuarios.find(                           ⬅️️  coleccion
+  { edad: { $gt: 20 } },                      ⬅️️  filtro
+  [{nombre: 1, edad: 1, genero_favorito: 0 }] ⬅️️  proyeccion
+  ).limit(5).sort( {edad: 1 } )               ⬅️️  modificadores
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Operaciones CRUD / READ / Filtros</h3>
+                    <font size=5>
+                        <ul>
+                            <li>$eq (igual que):<br>db.usuarios.find({edad:{$eq:20}})</li>
+                            <li>$gt (mayor que):<br>db.usuarios.find({edad:{$gt:20}})</li>
+                            <li>$gte (mayor o igual que):<br>db.usuarios.find({edad:{$gte:20}})</li>
+                            <li>$lt (menor que):<br>db.usuarios.find({edad:{$lt:20}})</li>
+                            <li>$lte (menor o igual que):<br>db.usuarios.find({edad:{$lte:20}})</li>
+                            <li>$ne (distinto a):<br>db.usuarios.find({edad:{$ne:20}})</li>
+                        </ul>
+                    </font>
+                </section>
+                <section>
+                    <h3>Operaciones CRUD / READ / Filtros</h3>
+                    <font size=5>
+                        <ul>
+                            <li>$in (igual a alguno):<br>db.usuarios.find({genero_favorito:{$in:["Drama","Ciencia Ficcion"]}}) </li>
+                            <li>$exists (existencia):<br>db.usuarios.find({genero_favorito:{$exists:true}}) </li>
+                            <li>$or (OR):<br>db.usuarios.find({"$or":[{edad:{$gte:20}},{edad:{$lte:30}}]})</li>
+                            <li>$and (AND):<br>db.usuarios.find({"$and":[{edad:{$gte:20}},{genero_favorito:"Drama"}]})</li>
+                            <li>$not (NOT):<br>db.usuarios.find("$not:{"{"$or":[{edad:{$gte:20}},{edad:{$lte:30}}]}})</li>
+                            <li>$regex (expresión regular):<br>db.usuarios.find({nombre: /\w*/i})</li>
+                        </ul>
+                    </font>
+                </section>
+                <section>
+                    <h3>Operaciones CRUD / READ / Modificadores</h3>
+                    <ul>
+                        <li>limit():</li>
+                        <li>count()</li>
+                        <li>sort()</li>
+                        <li>skip()</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Operaciones CRUD</h3>
+                    <p>UPDATE (update): </p>
+                    <font size=5>
+                        <p><i><strong>SQL</strong>:<br>UPDATE usuarios SET genero_favorito = "Drama" WHERE edad > 30</i>
+                    </font>
+                    <pre>
+                      <code class="prettyprint">> db.usuarios.update(                        ⬅️️  coleccion
+  { edad: { $gt: 30 } },                     ⬅️️  filtro
+  { $set: { genero_favorito: "Drama"} },     ⬅️️  accion [$set|$unset|$inc]
+  { multi: true } )                          ⬅️️  opcion [$multi|$upsert]
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Operaciones CRUD</h3>
+                    <p>REMOVE (delete): </p>
+                    <font size=5>
+                        <p><i><strong>SQL</strong>:<br>DELETE FROM usuarios WHERE edad > 30</i>
+                    </font>
+                    <pre>
+                      <code class="prettyprint">> db.usuarios.remove(                        ⬅️️  coleccion
+  { edad: { $gt: 30 } )                     ⬅️️  filtro
+</code>
+</pre>
+                </section>
+            </section>
         </div>
     </div>
 
