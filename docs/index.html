@@ -67,7 +67,7 @@
             <section>
                 <section>
                     <h3>Primero lo primero... ¿Qué es una base de datos?</h3>
-                    <p class="fragment">Una base de datos es una colección de información organizada de forma que se pueda seleccionar "rápidamente" los fragmentos de datos que se necesiten.<br>
+                    <p class="fragment">Una base de datos es una colección de información organizada de forma que se puedan seleccionar "rápidamente" los fragmentos de datos que se necesiten.<br>
                         <img alt="image" src="https://upload.wikimedia.org/wikipedia/commons/2/26/Actividad_No.1.png" /></p>
                 </section>
                 <section>
@@ -91,12 +91,12 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>Bases de datos relacionales.Ventajas (ACID):</h3>
+                    <h3>Bases de datos relacionales. Ventajas (ACID):</h3>
                     <ul class="fragment">
-                        <li><strong>Atomicity</strong>(<i>Atomicidad</i>): una operación no se realiza si todos sus pasos no pueden ser ejecutados.</li>
-                        <li class="fragment"><strong>Consistency</strong>(<i>Consistencia</i>): una operación solo puede llevar la base de datos de un estado válido a otro estado válido.</li>
-                        <li class="fragment"><strong>Isolation</strong>(<i>Aislamiento</i>): una operación no puede afectar a otra.</li>
-                        <li class="fragment"><strong>Durability</strong>(<i>Durabilidad</i>): una operación realizada no se puede deshacer.</li>
+                        <li><strong>Atomicity</strong> (<i>Atomicidad</i>): una operación no se realiza si todos sus pasos no pueden ser ejecutados.</li>
+                        <li class="fragment"><strong>Consistency</strong> (<i>Consistencia</i>): una operación solo puede llevar la base de datos de un estado válido a otro estado válido.</li>
+                        <li class="fragment"><strong>Isolation</strong> (<i>Aislamiento</i>): una operación no puede afectar a otra.</li>
+                        <li class="fragment"><strong>Durability</strong> (<i>Durabilidad</i>): una operación realizada no se puede deshacer.</li>
                     </ul>
                 </section>
                 <section>
@@ -111,8 +111,8 @@
             <section>
                 <section>
                     <h3>¿Qué son las bases de datos NoSQL?</h3>
-                    <p class="fragment">Bases de datos que no requieren estructuras fijas en los registros de datos y en vez de usas esquemas entidad-relación usan varios tipos de modelos distintos:<i>clave-valor</i>,<i>orientada a documentos</i>,<i>en grafo</i>...</p>
-                    <p class="fragment">No soportan operaciones<i>JOIN</i> (reuniones), ni garantizan<i>ACID</i>. Pero escalan horizontalmente con facilidad y sus operaciones se realizan "rápidamente".</p>
+                    <p class="fragment">Bases de datos que no requieren estructuras fijas en los registros de datos, usando para ello varios tipos de modelos distintos:<i>clave-valor</i>,<i>orientada a documentos</i>,<i>en grafo</i>...</p>
+                    <p class="fragment">No soportan operaciones <i>JOIN</i> (reuniones), ni garantizan <i>ACID</i>. Pero escalan horizontalmente con facilidad y sus operaciones se realizan "rápidamente".</p>
                 </section>
                 <section>
                     <h3>¿Por qué aparecen las bases de datos NoSQL?</h3>
@@ -122,8 +122,8 @@
                         <li class="fragment">Consultas tipo
                             <strog>Map-Reduce</strong>
                         </li>
-                        <li class="fragment">Almacenamiento de datos mediante<i>sharding</i>.</li>
-                        <li class="fragment">Trabajo en memoria y datos eventualmente-consistentes.</li>
+                        <li class="fragment">Almacenamiento de datos mediante <i>sharding</i>.</li>
+                        <li class="fragment">Trabajo en memoria y datos eventualmente consistentes.</li>
                     </ul>
                 </section>
                 <section>
@@ -205,7 +205,7 @@
                     <h3>Características de MongoDB</h3>
                     <ul class="fragment">
                         <li>Reconoce sin problemas muchos de tipos de datos: string, integer, double, boolean, date, timestamp, null, array, objects...</li>
-                        <li class="fragment">El uso de colecciones y que un documento pueda contener otro documento suple la no existencia de JOIN (- complejidad + rapidez)</li>
+                        <li class="fragment">El uso de colecciones y que un documento pueda contener otro documento suple la no existencia de JOIN (-complejidad +rapidez)</li>
                         <li class="fragment">Búsquedas por campos, rangos o expresiones regulares usando el shell de MongoDB o directamente mediante programas en JavaScript</li>
                         <li class="fragment">Escalado horizontal mediante "sharding". Se puede elegir como se distribuyen.</li>
                         <li class="fragment">Ejecución simple en varios servicos, balanceo automático de carga y replicación automática en caso de fallo hardware.</li>
@@ -232,10 +232,10 @@
                         </tr>
                         <tr>
                             <td class="tg-baqh">Columnas</td>
-                            <td class="tg-baqh">Registros</td>
+                            <td class="tg-baqh">Campos</td>
                         </tr>
                     </table>
-                    <p class="fragment">Sobre la información se itera o se cuentan el número de campos mediante <strong>cursores</strong>.</p>
+                    <p class="fragment">Uso de <strong>cursores</strong> para contar registros o iterar sobre la información.</p>
                 </section>
                 <section>
                     <h3>¿Cómo se organizan internamente los documentos?</h3>
