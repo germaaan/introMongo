@@ -363,7 +363,7 @@
                 <section>
                     <h3>Operaciones CRUD / READ / Modificadores</h3>
                     <ul>
-                        <li>limit():</li>
+                        <li>limit()</li>
                         <li>count()</li>
                         <li>sort()</li>
                         <li>skip()</li>
@@ -395,7 +395,180 @@
 </code>
 </pre>
                 </section>
-            </section>
+                <section>
+                    <h3> Agregación </h3>
+                    <p>Se aplican varias acciones a los documentos para obtener los resultados necesarios</p>
+                    <font size=5>
+                        <table class="tg">
+                            <tr>
+                                <th class="tg-amwm">SQL</th>
+                                <th class="tg-amwm">MongoDB</th>
+                            </tr>
+                            <tr>
+                                <td class="tg-s6z2">SELECT</td>
+                                <td class="tg-s6z2">$project</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-s6z2">WHERE</td>
+                                <td class="tg-s6z2">$match</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-s6z2">GROUP BY</td>
+                                <td class="tg-s6z2">$group</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-s6z2">HAVING</td>
+                                <td class="tg-s6z2">$match</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-s6z2">ORDER BY</td>
+                                <td class="tg-s6z2">$sort</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-s6z2">LIMIT</td>
+                                <td class="tg-s6z2">$limit</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-s6z2">SUM</td>
+                                <td class="tg-s6z2">$sum</td>
+                            </tr>
+                        </table>
+                    </font>
+                </section>
+                <section>
+                    <h3> Agregación </h3>
+                    <pre>
+                      <code class="prettyprint">
+SELECT Localidad, AVG (Facturacion) "FACTURACION MEDIA"
+FROM pedidos
+WHERE Localidad <> "Jaen"
+GROUP BY Localidad
+HAVING AVG (Facturacion) > 5000
+ORDER BY Localidad ASC;
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3> Agregación </h3>
+                    <pre>
+  <code class="prettyprint">db.pedidos.aggregate({
+   $sort: {
+    "Localidad": -1
+   }
+}, {
+   $match: {
+     "Localidad": {
+       "$ne": "Jaen"
+   }
+   }
+}, {
+   $group: {
+      _id: {
+        $toUpper: "$Localidad"
+      },
+      "FACTURACION MEDIA": {
+        $avg: "$Facturacion"
+      }
+    }
+ }, {
+    $match: {
+      "FACTURACION MEDIA": {
+        $gt: 5000
+      }
+    }
+  })
+  </code>
+</pre>
+                </section>
+                <section>
+                    <h3>MapReduce</h3>
+                    <ul>
+                        <li>Map: realiza el mapeo paralelo de los datos.</li>
+                        <li>Reduce: se aplica una función en paralelo a cada porción de datos.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>MapReduce</h3>
+                    <p>Ejemplo usando base de datos libre GeoWorldMap para calcular el par de ciudades que se encuentran más cercanas en cada país, excluyendo a Estados Unidos.
+                        <p>
+                            <pre>
+<code class="prettyprint">
+</code>
+db.runCommand({
+  mapReduce: "cities",
+  map: function Map() {
+    var key = this.CountryID;
+    emit(key, {
+      "data": [{
+        "name": this.City,
+        "lat": this.Latitude,
+        "lon": this.Longitude
+      }]
+    });
+  },
+
+  reduce: function Reduce(key, values) {
+    var reduced = {
+      "data": []
+    };
+    for (var i in values) {
+      var inter = values[i];
+      for (var j in inter.data) {
+        reduced.data.push(inter.data[j]);
+      }
+    }
+    return reduced;
+  },
+  finalize: function Finalize(key, reduced) {
+      if (reduced.data.length == 1) {
+        return {
+          "message": "Este país sólo tiene una ciudad"
+        };
+      }
+      var min_dist = 999999999999;
+      var city1 = {
+        "name": ""
+      };
+      var city2 = {
+        "name": ""
+      };
+      var c1;
+      var c2;
+      var d;
+      for (var i in reduced.data) {
+        for (var j in reduced.data) {
+          if (i >= j) continue;
+          c1 = reduced.data[i];
+          c2 = reduced.data[j];
+          d = (c1.lat - c2.lat) * (c1.lat - c2.lat) + (c1.lon - c2.lon) * (c1.lon - c2.lon);
+          if (d < min_dist && d > 0) {
+            min_dist = d;
+            city1 = c1;
+            city2 = c2;
+          }
+        }
+      }
+      return {
+        "city1": city1.name,
+        "city2": city2.name,
+        "dist": Math.sqrt(min_dist)
+      };
+    },
+    query: {
+      "CountryID": {
+        "$ne": 254
+      }
+    },
+    out: {
+      merge: "ciudades_proximas"
+    }
+  });
+
+  db.ciudades_proximas.find({}, {
+    "_id": 0
+  })
+</pre>
+                </section>
         </div>
     </div>
 
