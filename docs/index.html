@@ -493,7 +493,6 @@ ORDER BY Localidad ASC;
                         <p>
                             <pre>
 <code class="prettyprint">
-</code>
 db.runCommand({
   mapReduce: "cities",
   map: function Map() {
@@ -567,6 +566,7 @@ db.runCommand({
   db.ciudades_proximas.find({}, {
     "_id": 0
   })
+</code>
 </pre>
                 </section>
         </div>
