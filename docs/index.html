@@ -112,7 +112,7 @@
                 <section>
                     <h3>¿Qué son las bases de datos NoSQL?</h3>
                     <p class="fragment">Bases de datos que no requieren estructuras fijas en los registros de datos y en vez de usas esquemas entidad-relación usan varios tipos de modelos distintos:<i>clave-valor</i>,<i>orientada a documentos</i>,<i>en grafo</i>...</p>
-                    <p class="fragment">No soportan operaciones<i>JOIN</i>, ni garantizan<i>ACID</i>. Pero escalan horizontalmente con facilidad y sus operaciones se realizan "rápidamente".</p>
+                    <p class="fragment">No soportan operaciones<i>JOIN</i> (reuniones), ni garantizan<i>ACID</i>. Pero escalan horizontalmente con facilidad y sus operaciones se realizan "rápidamente".</p>
                 </section>
                 <section>
                     <h3>¿Por qué aparecen las bases de datos NoSQL?</h3>
@@ -123,7 +123,7 @@
                             <strog>Map-Reduce</strong>
                         </li>
                         <li class="fragment">Almacenamiento de datos mediante<i>sharding</i>.</li>
-                        <li class="fragment">Trabajo en memoria.</li>
+                        <li class="fragment">Trabajo en memoria y datos eventualmente-consistentes.</li>
                     </ul>
                 </section>
                 <section>
@@ -191,6 +191,90 @@
                     </ul>
                 </section>
             </section>
+            <section>
+                <section>
+                    <h3>¿Qué es MongoDB?</h3>
+                    <ul class="fragment">
+                        <li>MongoDB es un sistema de base de datos multiplataforma orientado a documentos de esquema libre.</li>
+                        <li class="fragment">Está escrita en C++.</li>
+                        <li class="fragment">Los registros de datos reciben el nombre de <strong>documentos</strong> y se puede agrupar en <strong>colecciones</strong>.</li>
+                        <li class="fragment">Licencia libre GNU AGPL 3.0.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Características de MongoDB</h3>
+                    <ul class="fragment">
+                        <li>Reconoce sin problemas muchos de tipos de datos: string, integer, double, boolean, date, timestamp, null, array, objects...</li>
+                        <li class="fragment">El uso de colecciones y que un documento pueda contener otro documento suple la no existencia de JOIN (- complejidad + rapidez)</li>
+                        <li class="fragment">Búsquedas por campos, rangos o expresiones regulares usando el shell de MongoDB o directamente mediante programas en JavaScript</li>
+                        <li class="fragment">Escalado horizontal mediante "sharding". Se puede elegir como se distribuyen.</li>
+                        <li class="fragment">Ejecución simple en varios servicos, balanceo automático de carga y replicación automática en caso de fallo hardware.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Esquema comparativo de organización</h3>
+                    <table class="tg">
+                        <tr>
+                            <th class="tg-amwm">Modelo relacional</th>
+                            <th class="tg-amwm">MongoDB</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-baqh">Base de datos</td>
+                            <td class="tg-baqh">Base de datos</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-baqh">Tabla</td>
+                            <td class="tg-baqh">Colecciones</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-baqh">Filas</td>
+                            <td class="tg-baqh">Documentos</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-baqh">Columnas</td>
+                            <td class="tg-baqh">Registros</td>
+                        </tr>
+                    </table>
+                    <p class="fragment">Sobre la información se itera o se cuentan el número de campos mediante <strong>cursores</strong>.</p>
+                </section>
+                <section>
+                    <h3>¿Cómo se organizan internamente los documentos?</h3>
+                    <p class="fragment">Mediante el uso de BSON (Binary JSON), una versión modificada de JSON que guarda de forma explícita información útil para realizar búsquedas rápidas de datos.</p>
+                    <p class="fragment">Todos los documentos tienen un campo <i>"_id"</i> único.</p>
+                </section>
+                <section>
+                    <h3>Ejemplo de documento</h3>
+                    <pre>
+                    <code class="prettyprint">{
+  "_id": ObjectId("4efa9f2b7d343dad555e4bc7"),
+  "Nombre": "German",
+  "Apellidos": "Martinez Maldonado",
+  "Edad": 28,
+  "Favoritas": ["Ciencia Ficcion","Drama","Comedias"],
+  "Series": [
+    {
+      "Nombre":"Breaking Bad",
+      "Genero":"Drama",
+      "Nota":10,
+      "Comentario":"La mejor serie de la historia"
+    },
+    {
+      "Nombre":"Doctor Who",
+      "Genero":"Ciencia Ficcion",
+      "Nota":9,
+      "Comentario":"Ojala yo teniendo una TARDIS ahora"
+    },
+    {
+      "Nombre":"LOST",
+      "Genero":"Ciencia Ficcion",
+      "Nota":4,
+      "Comentario":"El final más meh de la historia"
+    },
+  ]
+}
+</code>
+</pre>
+                </section>
         </div>
     </div>
 
