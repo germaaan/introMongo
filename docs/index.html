@@ -28,6 +28,21 @@
             border: none;
             box-shadow: none;
         }
+
+        #wrap {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        #left_col {
+            float: left;
+            width: 300px;
+        }
+
+        #right_col {
+            float: right;
+            width: 300px;
+        }
     </style>
 </head>
 
@@ -40,8 +55,8 @@
                     <img alt="image" src="images/mongodb.png" height="250" />
                     <font size="4">
                         <br/><br/><i style="font-size: 25px;">Oficina de Software Libre de la Universidad de Granada</i>
-                        <br/>(<strong>Twitter</strong>: <a href="https://twitter.com/OSLUGR">@OSLUGR</a> /
-                        <strong>Facebook</strong>: <a href="https://www.facebook.com/SoftwareLibreUGR">@SoftwareLibreUGR</a>)
+                        <br/>(<strong>Twitter</strong>:<a href="https://twitter.com/OSLUGR">@OSLUGR</a>/
+                        <strong>Facebook</strong>:<a href="https://www.facebook.com/SoftwareLibreUGR">@SoftwareLibreUGR</a>)
                         <br/><br/><i style="font-size: 25px;">Granada Geek</i>
                         <br/>(<a href="http://www.meetup.com/es-ES/Granada-Geek/">http://www.meetup.com/es-ES/Granada-Geek/</a>)
                     </font>
@@ -51,82 +66,131 @@
             </section>
             <section>
                 <section>
-                    Primero lo primero... ¿Qué es una base de datos? Una base de datos es una colección de información organizada de forma que se pueda seleccionar "rápidamente" los fragmentos de datos que se necesiten.
+                    <h3>Primero lo primero... ¿Qué es una base de datos?</h3>
+                    <p class="fragment">Una base de datos es una colección de información organizada de forma que se pueda seleccionar "rápidamente" los fragmentos de datos que se necesiten.<br>
+                        <img alt="image" src="https://upload.wikimedia.org/wikipedia/commons/2/26/Actividad_No.1.png" /></p>
                 </section>
                 <section>
-                  ¿Tipos de bases de datos? Muchas..
-                  Jerárquicas
-                  De red
-                  Transaccionales
-                  Relacionales
-                  Multidimensionales
-                  Orientadas a objetos
-                  Documentales
-                  En grafo
-                  Clave/valor
+                    <h3>¿Tipos de bases de datos? Muchas..</h3>
+                    <ul class="fragment">
+                        <li>Jerárquicas</li>
+                        <li>De red</li>
+                        <li>Transaccionales</li>
+                        <li>Relacionales</li>
+                        <li>Multidimensionales</li>
+                        <li>Por clave-valor</li>
+                        <li>Orientadas a documentos</li>
+                        <li>En grafo</li>
+                    </ul>
                 </section>
-              <section>
-                ¿Más usadas tradicionalmente?
-                Bases de datos relacionales: la información se organiza en una o varias tablas estructuradas en registros (filas) y campos (columnas) para dar forma un esquema entidad-relación.
-                SQL (Structured Query Language - Lenguaje de Consulta Estructurada): lenguaje que nos permite realizar diferentes tipos de operaciones con la información.
-              </section>
-              <section>
-                Bases de datos relacionales
-                Ventajas (ACID):
-                Atomicity (Atomicidad): una operación no se realiza si todos sus pasos no pueden ser ejecutados.
-                Consistency (Consistencia): una operación solo puede llevar la base de datos de un estado válido a otro estado válido.
-                Isolation (Aislamiento): una operación no puede afectar a otra.
-                Durability (Durabilidad): una operación realizada no se puede deshacer.
-              </section>
-              <section>
-                Bases de datos relacionales
-                Desventajas:
-                Esquemas muy rígidos.
-                No son prácticas para algo que no sea texto.
-                "Bajo" rendimiento y difícil escalabilidad.
-              </section>
+                <section>
+                    <h3>¿Lo más usado tradicionalmente?</h3>
+                    <ul class="fragment">
+                        <li><strong>Bases de datos relacionales</strong>: la información se organiza en una o varias tablas estructuradas en registros (filas) y campos (columnas) para dar forma un esquema entidad-relación.</li>
+                        <li class="fragment"><strong>SQL</strong>(<i>Structured Query Language - Lenguaje de Consulta Estructurada</i>): lenguaje que nos permite realizar diferentes tipos de operaciones con la información.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Bases de datos relacionales.Ventajas (ACID):</h3>
+                    <ul class="fragment">
+                        <li><strong>Atomicity</strong>(<i>Atomicidad</i>): una operación no se realiza si todos sus pasos no pueden ser ejecutados.</li>
+                        <li class="fragment"><strong>Consistency</strong>(<i>Consistencia</i>): una operación solo puede llevar la base de datos de un estado válido a otro estado válido.</li>
+                        <li class="fragment"><strong>Isolation</strong>(<i>Aislamiento</i>): una operación no puede afectar a otra.</li>
+                        <li class="fragment"><strong>Durability</strong>(<i>Durabilidad</i>): una operación realizada no se puede deshacer.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Bases de datos relacionales. Desventajas:</h3>
+                    <ul class="fragment">
+                        <li>Esquemas muy rígidos.</li>
+                        <li class="fragment">No son prácticas para algo que no sea texto.</li>
+                        <li class="fragment">"Bajo" rendimiento y difícil escalabilidad.</li>
+                    </ul>
+                </section>
             </section>
             <section>
-            <section>
-              ¿Qué son las bases de datos NoSQL?
-              Bases de datos que no requieren estructuras fijas en los registros de datos y en vez de usas esquemas entidad-relación, usan varios tipos de modelos distintos: clave-valor, orientada a documentos o en grafo.
-              No soportan operaciones JOIN, ni garantizan ACID.
-              Pero que escalan horizontalmente con facilidad y cuyas operaciones se realizan "rápidamente".
+                <section>
+                    <h3>¿Qué son las bases de datos NoSQL?</h3>
+                    <p class="fragment">Bases de datos que no requieren estructuras fijas en los registros de datos y en vez de usas esquemas entidad-relación usan varios tipos de modelos distintos:<i>clave-valor</i>,<i>orientada a documentos</i>,<i>en grafo</i>...</p>
+                    <p class="fragment">No soportan operaciones<i>JOIN</i>, ni garantizan<i>ACID</i>. Pero escalan horizontalmente con facilidad y sus operaciones se realizan "rápidamente".</p>
+                </section>
+                <section>
+                    <h3>¿Por qué aparecen las bases de datos NoSQL?</h3>
+                    <p class="fragment">Por el crecimiento exponencial de la información que circula en Internet. (<strong>Recordad</strong>: atomicidad y "bajo" rendimiento, además de consultas cada vez más complejas).</p>
+                    <ul class="fragment">
+                        <li>Añadir más nodos es simple</li>
+                        <li class="fragment">Consultas tipo
+                            <strog>Map-Reduce</strong>
+                        </li>
+                        <li class="fragment">Almacenamiento de datos mediante<i>sharding</i>.</li>
+                        <li class="fragment">Trabajo en memoria.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Tipos de bases de datos NoSQL. Por clave-valor:</h3>
+                    <p class="fragment">Cada elemento es identificado por una clave única y la información se almacena generalmente en un objeto binario.</p>
+                    <div id="wrap" class="fragment">
+                        <div id="left_col">
+                            <img alt="image" src="images/clavevalor.png" />
+                        </div>
+                        <div id="right_col">
+                            <ul>
+                                <font size="5">
+                                    <br>
+                                    <li>Ejemplos: Cassandra, HBase, Redis.</li>
+                                    <br>
+                                    <li>Usadas en Facebook, Twitter, Yahoo o StackOverflow.</li>
+                                </font>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Tipos de bases de datos NoSQL. Orientada a documentos:</h3>
+                    <p class="fragment">Almacenan la información en estructuras simples estandarizadas como JSON, XML o BSON sobre las que se pueden realizar búsquedas por clave-valor o realizar consultas más avanzadas.</p>
+                    <div id="wrap" class="fragment">
+                        <div id="left_col">
+                            <img alt="image" src="images/documentales.png" />
+                        </div>
+                        <div id="right_col">
+                            <ul>
+                                <font size="5">
+                                    <li>Ejemplos: MongoDB, CouchDB.</li>
+                                    <br>
+                                    <li>Usadas en Foursquare, eBay o BBC.</li>
+                                </font>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Tipos de bases de datos NoSQL. En grafo:</h3>
+                    <p class="fragment">Mediante la teoría de grafos usa nodos y aristas para representar la información. Muy útil para representar modelos con muchas relaciones como las redes sociales.</p>
+                    <div id="wrap" class="fragment">
+                        <div id="left_col">
+                            <img alt="image" src="images/grafos.png" />
+                        </div>
+                        <div id="right_col">
+                            <ul>
+                                <font size="5">
+                                    <li>Ejemplos: Infinity Graph o Neo4j.</li>
+                                    <br>
+                                    <li>Usadas en en HP, Infojobs o Cisco.</li>
+                                </font>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>En resumen, cuando usar NoSQL:</h3>
+                    <ul class="fragment">
+                        <li>Cuando el volumen de datos crece muy rápidamente en momentos puntuales pudiendo superar el terabyte.</li>
+                        <li class="fragment">Cuando la escalabilidad no es viable en el modelo relacional por motivos de coste o técnicos.</li>
+                        <li class="fragment">Cuando existen picos de uso del sistema en múltiples ocasiones.</li>
+                        <li class="fragment">Cuando el esquema de la información no es homogéneo.</li>
+                    </ul>
+                </section>
             </section>
-            <section>
-              ¿Por qué aparecen las bases de datos NoSQL?
-              Por el crecimiento exponencial de la información que circula en Internet.
-              (Recordad: atomicidad y "bajo" rendimiento, además de consultas cada vez más complejas)
-              Añadir más nodos es simple.
-              Consultas tipo Map-Reduce y sharding.
-              Trabajo en memoria.
-            </section>
-            <section>
-              Tipos de bases de datos NoSQL
-              Por clave valor: cada elemento es identificado por una clave única y la información se almacena generalmente en un objeto binario.
-              Ej: Cassandra, HBase, Redis.
-              Usado Facebook, Twitter, Yahoo o StackOverflow.
-            </section>
-            <section>
-              Tipos de bases de datos NoSQL
-              Orientada a documentos: almacenan la información en estructuras simples estandarizadas como JSON, XML o BSON sobre las que se pueden realizar búsquedas por clave-valor o realizar consultas más avanzadas.
-              Ej: MongoDB, CouchDB.
-              Usado en Foursquare, eBay y BBC.
-            </section>
-            <section>
-              Tipos de bases de datos NoSQL
-              En grafo: mediante la teoría de grafos usa nodos y aristaspara representar la información. Muy útil para representar modelos con muchas relaciones como las redes sociales.
-              Ej: Infinity Graph o Neo4j.
-              Usado en HP, Infojobs o Cisco.
-            </section>
-            <section>
-              En resumen, cuando usar NoSQL:
-              Cuando el volumen de datos crece muy rápidamente en momentos puntuales pudiendo superar el terabyte.
-              Cuando la escalabilidad no es viable en el modelo relacional por motivos de coste o técnicos.
-              Cuando existen picos de uso del sistema en múltiples ocasiones.
-              Cuando el esquema de la información no es homogéneo.
-            </section>
-          </section>
         </div>
     </div>
 
